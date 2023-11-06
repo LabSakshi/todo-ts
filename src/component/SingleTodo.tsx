@@ -18,6 +18,7 @@ const SingleTodo: React.FC<{
   }, [edit]);
 
   const handleEdit = (e: React.FormEvent, id: number) => {
+    console.log('heelloooooo!!!!!!!!!1')
     e.preventDefault();
     setTodos(
       todos.map((todo) => (todo.id === id ? { ...todo, todo: editTodo } : todo))
@@ -30,11 +31,6 @@ const SingleTodo: React.FC<{
   };
 
   const handleDone = (id: number) => {
-    if(edit){
-      setEdit(!edit)
-      return
-    }
-
     setTodos(
       todos.map((todo) =>
         todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
@@ -43,46 +39,56 @@ const SingleTodo: React.FC<{
   };
 
   return (
-    <form className="todos__single" onSubmit={(e) => handleEdit(e, todo.id)} data-testid="single-todo"
+    <form
+      className="todos__single"
+      onSubmit={(e) => handleEdit(e, todo.id)}
+      data-testid="single-todo"
     >
       {edit ? (
         <input
           value={editTodo}
           onChange={(e) => setEditTodo(e.target.value)}
           className="todos__single--text"
+          id="todo__edit--text"
           ref={inputRef}
           data-testid="edit-input-box"
-
-          
         />
       ) : todo.isDone ? (
-        <s className="todos__single--text" data-testid="striked-item"
-        >{todo.todo}</s>
+        <s className="todos__single--text" id="striked-todo" data-testid="striked-item">
+          {todo.todo}
+        </s>
       ) : (
         <span className="todos__single--text">{todo.todo}</span>
       )}
-      <div>
-        <span
-          className="icon"
-          onClick={() => {
-            if (!edit && !todo.isDone) {
-              setEdit(!edit);
-            }
-          }}
-          data-testid="edit-icon"
-        >
-          <AiFillEdit />
-        </span>
-        <span className="icon" onClick={() => handleDelete(todo.id)} data-testid="delete-icon"
->
-          <AiFillDelete />
-        </span>
-        <span className="icon" onClick={() => handleDone(todo.id)} data-testid="done-icon"
-
-        >
-          <MdDone />
-        </span>
-      </div>
+      {!edit && (
+        <div>
+          <span
+            className="icon"
+            onClick={() => {
+              if (!edit && !todo.isDone) {
+                setEdit(!edit);
+                }
+            }}
+            data-testid="edit-icon"
+          >
+            <AiFillEdit />
+          </span>
+          <span
+            className="icon"
+            onClick={() => handleDelete(todo.id)}
+            data-testid="delete-icon"
+          >
+            <AiFillDelete />
+          </span>
+          <span
+            className="icon"
+            onClick={() => handleDone(todo.id)}
+            data-testid="done-icon"
+          >
+            <MdDone />
+          </span>
+        </div>
+      )}
     </form>
   );
 };
