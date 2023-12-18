@@ -7,7 +7,9 @@ interface props {
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
+
 const TodoList: React.FC<props> = ({ todos, setTodos }) => {
+  console.log(todos, '📱😁😁from todolist')
   return (
     <div className="todos">
       {todos?.map((todo) => (

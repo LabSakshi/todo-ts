@@ -10,8 +10,8 @@ const SingleTodo: React.FC<{
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }> = ({ todo, todos, setTodos }) => {
   const [edit, setEdit] = useState<boolean>(false);
-  const [editTodo, setEditTodo] = useState<string>(todo.todo);
-
+  const [editTodo, setEditTodo] = useState<string>(todo.task);
+  console.log(todo, 'from single todo!!')
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     inputRef.current?.focus();
@@ -55,10 +55,10 @@ const SingleTodo: React.FC<{
         />
       ) : todo.isDone ? (
         <s className="todos__single--text" id="striked-todo" data-testid="striked-item">
-          {todo.todo}
+          {todo.task}
         </s>
       ) : (
-        <span className="todos__single--text">{todo.todo}</span>
+        <span className="todos__single--text">{todo.task}</span>
       )}
       {!edit && (
         <div>

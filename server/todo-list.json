@@ -1,0 +1,16 @@
+[
+  { "id": 1, "task": "Read Book", "active": true },
+  { "id": 2, "task": "Code", "active": true },
+  {
+    "id": 3,
+    "task": "Memorize the fifty states and their capitals",
+    "active": true
+  },
+  { "id": 4, "task": "Watch a classic movie", "active": true },
+  { "id": 5, "task": "Solve a Rubik's cube", "active": true },
+  {
+    "id": 6,
+    "task": "Invite some friends over for a game night",
+    "active": true
+  }
+]
